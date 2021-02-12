@@ -12,7 +12,6 @@ import java.util.Set;
 @Service
 public class BookService {
 
-    //    private static final Logger LOGGER = LoggerFactory.getLogger(BookController.class);
     private final BookRepository bookRepository;
     private final NoteRepository noteRepository;
 
@@ -68,7 +67,7 @@ public class BookService {
                 );
     }
 
-    public void addNote(Long bookId,Note note) {
+    public void addNote(Long bookId, Note note) {
         checkBookWithId(bookId);
 
         bookRepository.findById(bookId)
@@ -84,13 +83,5 @@ public class BookService {
 
     }
 
-    public void removeNote(Long noteId) {
-        boolean exists = noteRepository.existsById(noteId);
-        if(!exists){
-            throw  new IllegalStateException("NOTE WITH ID=" + noteId
-                    + " DOESN'T EXISTS");
-        }
-        noteRepository.deleteById(noteId);
 
-    }
 }
