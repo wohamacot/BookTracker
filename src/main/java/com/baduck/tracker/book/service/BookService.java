@@ -5,6 +5,7 @@ import com.baduck.tracker.book.model.Note;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -84,4 +85,14 @@ public class BookService {
     }
 
 
+    public Set<Book> findBook(String text) {
+        Set<Book> foundBooks = new HashSet<>();
+
+        bookRepository.findAll().forEach(book -> {
+            if (book.getTitle().contains(text)) {
+                foundBooks.add(book);
+            }
+        });
+        return foundBooks;
+    }
 }
